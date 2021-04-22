@@ -10,7 +10,7 @@ const userRouter = require('./routes/users')
 require('dotenv/config')
 
 const app = express()
-const port = process.env.port || 3000;
+const port = process.env.port || 5000;
 
 //middleware
 app.use(cors());
@@ -19,7 +19,7 @@ app.use('/exercises', exerciseRouter)
 app.use('/users', userRouter)
 
 const connection = mongoose.connection;
-mongoose.connect(process.env.DB_connection, {useNewUrlParser: true},{createIndexes: true});
+mongoose.connect(process.env.DB_connection, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
 connection.once('open', () => {
   console.log("Mongodb database connection established successfully!")
 })

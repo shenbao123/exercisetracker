@@ -44,8 +44,8 @@ router.delete('/:id', (req,res) => {
   //   .catch(err => res.status(400).json('Error: ' + err))
 })
 
-router.patch('/:id', async (req,res) => {
-  await Exercise.findById(req.params.id)
+router.patch('/:id', (req,res) => {
+  Exercise.findById(req.params.id)
     .then(exercise => {
       exercise.username = req.body.username
       exercise.description = req.body.description
@@ -57,26 +57,6 @@ router.patch('/:id', async (req,res) => {
         .catch(err => res.status(400).json('Error: ' + err))
     })
     .catch(err => json.status(400).json('Error: ' + err))
-
-    // or 
-
-    // Exercise.findByIdAndUpdate(
-    //   {
-    //     _id: req.params.id,
-    //   },
-    //   {
-    //     username: req.body.username,
-    //     description: req.body.description,
-    //     duration: Number(req.body.duration),
-    //     date: Date.parse(req.body.date)
-    //   },
-    //   (err,result) => {
-    //     if(err)
-    //       res.send('Error: ' + err)
-    //     else
-    //     res.json('succes!')
-    //   })
-
 })
 
 
